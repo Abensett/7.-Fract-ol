@@ -1,4 +1,9 @@
-SRC = main.c
+SRC = 	ft_fractol.c \
+		ft_fractol_utils.c \
+		ft_mandelbrot.c \
+		ft_julia.c \
+		ft_menu.c \
+
 OBJ= $(SRC:.c=.o)
 OBJ	:= $(addprefix obj/,${OBJ})
 
