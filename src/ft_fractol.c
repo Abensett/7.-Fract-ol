@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 13:54:38 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/27 18:51:48 by abensett         ###   ########.fr       */
+/*   Updated: 2021/12/28 20:14:42 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,104 +14,64 @@
 #include "ft_fractol.h"
 
 
-/* 
-typedef struct s_mandelbrot
-{
-	double mb.x1 = -2.1;
-	double mb.x2 = 0.6;
-	double mb.y1 = -1,2;
-	double mb.y2 = 1.2;
-	int image_x = 270;
-	int image_y  = 240;
-	int mb.imax = 50;
-} 	 t_mandelbrot; */
-
-
-void	render_background(t_img *img, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < WINDOW_HEIGHT)
-	{
-		j = 0;
-		while (j < WINDOW_WIDTH)
-			my_mlx_pixel_put(img, j++, i, color);
-		++i;
-	}
-}
-
-
 int	ft_draw(t_data *data)
 {
-	int x;
-	int y;
-
-	mlx_mouse_get_pos(data->mlx_ptr, data->win_ptr, &x, &y);
-	printf("x : %d et y : %d ", x, y);
-
+	
+	
+	
 	if (data->win_ptr == NULL)
 		return (1);
 	
+	ft_julia_init(&data->f);
+	data->zm.zoom_x = WINDOW_WIDTH / (data->f.x2 - data->f.x1);
+	data->zm.zoom_y = WINDOW_HEIGHT / (data->f.y2 - data->f.y1);
 	ft_julia_draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-	return (0);
-}
-
-/* void    menu(t_data data)
-{
-	int *x;
-	int *y;
-
-	mlx_mouse_get_pos(data->win_ptr, x, y);
-
-	printf("x : %d et y : %d ", *x, *y);
-} */
-int	handle_keypress(int keysym, t_data *data)
-{
-	if (keysym == XK_Escape)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-	}
+	ft_menu(data);
 	return (0);
 }
 
 
 int	handle_scroll(int button, int x, int y, t_data *data)
 {
-	if(button == 0)
-		printf("x : %d et y : %d\n",x,y );
+	if(button == 4)
+	{
+		data->f.x1 +=100;
+ 		data->f.y2 +=100; 
+	}
 	return (0);
 }
 
+int ft_init_zoom (char *zoom)
+{
+	
+}
 
-int	main(void)
+
+int		main(int ac, char **av)
 {
 	t_data	data;
+/* 	if (ac != 2)
+		ft_error();
+	if (ft_check_arg(av[1]))
+		ft_error(); */
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-								"FRACTOL");
+	data.win_ptr = mlx_new_window(data.mlx_ptr,
+					 WINDOW_WIDTH, WINDOW_HEIGHT,"FRACTOL");
 	if (data.win_ptr == NULL)
-	{
-		free(data.win_ptr);
 		return (MLX_ERROR);
-	}
-
+	data.fractal_name = ft_strdup(av[1]);
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_WIDTH);
-	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len,
-									&data.img.endian);
+	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
+				&data.img.line_len, &data.img.endian);
 
 	mlx_loop_hook(data.mlx_ptr, &ft_draw, &data);
-	/* Setup hooks */ 
 	mlx_mouse_hook(data.win_ptr, &handle_scroll, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
-	/* we will exit the loop if there's no window left, and execute this code */
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
-}
+}	

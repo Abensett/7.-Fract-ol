@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 14:01:28 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/27 15:25:28 by abensett         ###   ########.fr       */
+/*   Updated: 2021/12/28 18:41:23 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,24 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 		i -= 8;
 	}
 }
+
+int	handle_keypress(int keysym, t_data *data)
+{
+	if (keysym == XK_Escape)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+	}
+	return (0);
+}
+
+void    ft_menu(t_data *data)
+{
+	int x;
+	int y;
+	
+	mlx_mouse_get_pos(data->mlx_ptr, data->win_ptr, &x, &y);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 30, 0, ft_itoa(x));
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 40, 0, ft_itoa(y));
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 80, 0, data->fractal_name);
+} 

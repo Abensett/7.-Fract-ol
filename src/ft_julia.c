@@ -6,57 +6,53 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:56:16 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/27 17:10:00 by abensett         ###   ########.fr       */
+/*   Updated: 2021/12/28 20:09:46 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fractol.h"
 
-void ft_julia_init(t_mandelbrot *julia)
+void ft_julia_init(t_fractal *julia)
 {
 	julia->x1 = -1;
 	julia->x2 = 1;
 	julia->y1 = -1.2;
 	julia->y2 = 1.2;
-	julia->c_r = 0;
-	julia->c_i = 0;
+	julia->c_r = 0.285;
+	julia->c_i = 0.01;
 	julia->z_r = 0;
 	julia->z_i = 0;
 	julia->x = 0;
 	julia->y = 0;
-	julia->zoom_x = WINDOW_WIDTH / (julia->x2 - julia->x1);
-	julia->zoom_y = WINDOW_HEIGHT / (julia->y2 - julia->y1);
+	julia->color = DARK_BLUE;
 	julia->imax = 150;
 }
 
+
 void ft_julia_draw(t_data *data)
 {
-	t_mandelbrot mb;
-	ft_julia_init(&mb);
 	int i;
 	double tmp;
 
-	while (mb.x < WINDOW_WIDTH)
+	while (data->f.x < WINDOW_WIDTH)
 	{
-		mb.y = 0;
-		while (mb.y < WINDOW_HEIGHT)
+		data->f.y = 0;
+		while (data->f.y < WINDOW_HEIGHT)
 		{
-			mb.c_r = 0.285;
-			mb.c_i = 0.01;
-			mb.z_r = mb.x / mb.zoom_x + mb.x1;
-			mb.z_i = mb.y / mb.zoom_y + mb.y1;
+			data->f.z_r = data->f.x / data->zm.zoom_x + data->f.x1;
+			data->f.z_i = data->f.y / data->zm.zoom_y + data->f.y1;
 			i = 0;
-			while (mb.z_r * mb.z_r + mb.z_i * mb.z_i < 4 && i++ < mb.imax)
+			while (data->f.z_r * data->f.z_r + data->f.z_i * data->f.z_i < 4 
+					&& i++ < data->f.imax)
 			{
-				tmp = mb.z_r;
-				mb.z_r = mb.z_r * mb.z_r - mb.z_i * mb.z_i + mb.c_r;
-				mb.z_i = 2 * mb.z_i * tmp + mb.c_i;
+				tmp = data->f.z_r;
+				data->f.z_r = data->f.z_r * data->f.z_r - data->f.z_i * data->f.z_i + data->f.c_r;
+				data->f.z_i = 2 * data->f.z_i * tmp + data->f.c_i;
 			}
-			if (i != mb.imax )
-				my_mlx_pixel_put(&data->img, mb. x, mb.y++, 0x1400bb *(i+1) );
-			else
-				my_mlx_pixel_put(&data->img, mb.x, mb.y++, 0);
+			if (i != data->f.imax )
+				my_mlx_pixel_put(&data->img, data->f. x, data->f.y, data->f.color + i * 20 );
+			data->f.y++;
 		}
-		mb.x++;
+		data->f.x++;
 	}
 }
