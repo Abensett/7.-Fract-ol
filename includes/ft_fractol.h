@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 14:03:40 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/29 20:08:23 by abensett         ###   ########.fr       */
+/*   Updated: 2021/12/30 17:35:27 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 
 #define WINDOW_WIDTH 1200
 #define WINDOW_HEIGHT 1000
+
 //Colors
 #define COOL_COLOR 0x474d09
 #define COOL_COLOR2 0x1400bb
+#define DARK_BLUE
 //KEYS
-
+#define KEY_C 99
 #define KEY_LEFT 65361
 #define KEY_DOWN 65364
 #define KEY_RIGHT 65363
@@ -78,18 +80,17 @@ int	ft_check_arg(char *av);
 
 /*ft_fractol_utils.c*/
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	ft_menu(t_data *data);
 int		ft_handle_keypress(int keysym, t_data *data);
 int		ft_handle_scroll(int button, int x, int y, t_data *data);
 void	ft_handle_colors(t_data *data);
+void	ft_handle_zoom(int button, int x, int y,t_data *data);
+void	ft_move(t_data *data, int keysym);
 
-
-
-
-/* ft_fractal.c*/
+/* ft_fractol.c*/
 void	ft_mandelbrot_zoom_init(t_fractal *brot);
 void 	ft_mandelbrot_init(t_fractal *fractal);
 void 	ft_mandelbrot_draw(t_data *data);
+void	ft_menu(t_data *data);
 
 /*ft_julia.c*/
 void 	ft_julia_zoom_init(t_fractal *julia);

@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:39:09 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/29 20:09:38 by abensett         ###   ########.fr       */
+/*   Updated: 2021/12/30 17:03:36 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_mandelbrot_zoom_init(t_fractal *brot)
 	brot->x2 = 0.6;
 	brot->y1 = -1.2;
 	brot->y2 = 1.2;
-	brot->imax = 50;
+	brot->imax = 10;
 	brot->iter_zoom = 0;
 	brot->color = 0xFFA07A;
 }
@@ -31,7 +31,7 @@ void	ft_mandelbrot_init(t_fractal *brot)
 		brot->x2 = 0.6;
 		brot->y1 = -1.2;
 		brot->y2 = 1.2;
-		brot->imax = 50;
+		brot->imax = 10;
 		brot->iter_zoom = 0;
 	}
 	brot->z_r = 0;
@@ -44,9 +44,9 @@ void	ft_mandelbrot_init(t_fractal *brot)
 	brot->c_r = brot->x / brot->zoom_x + brot->x1;
 }
 
-static	double my_pow (double a)
+static	double	my_pow(double a)
 {
-	return (a*a);
+	return (a * a);
 }
 
 void	ft_mandelbrot_draw(t_data *d)
@@ -64,14 +64,14 @@ void	ft_mandelbrot_draw(t_data *d)
 			d->f.z_r = 0;
 			d->f.z_i = 0;
 			i = 0;
-			while (my_pow(d->f.z_r) + d->f.z_i * d->f.z_i < 4 && i++ < d->f.imax)
+			while (my_pow(d->f.z_r) + my_pow(d->f.z_i) < 4 && i++ < d->f.imax)
 			{
 				tmp = d->f.z_r;
 				d->f.z_r = d->f.z_r * d->f.z_r - d->f.z_i * d->f.z_i + d->f.c_r;
 				d->f.z_i = 2 * d->f.z_i * tmp + d->f.c_i;
 			}
 			if (i != d->f.imax)
-				my_mlx_pixel_put(&d->img, d->f. x, d->f.y, d->f.color *i) ;
+				my_mlx_pixel_put(&d->img, d->f. x, d->f.y, d->f.color * i);
 			d->f.y++;
 		}
 		d->f.x++;
