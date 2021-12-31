@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:56:16 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/30 16:22:53 by abensett         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:24:37 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ft_julia_zoom_init(t_fractal *julia)
 	julia->y1 = -1.5;
 	julia->y2 = 1.5;
 	julia->imax = 50;
-	julia->iter_zoom = 0;
 	julia->color = 0xFFA07A;
+	julia->x_posi = 0;
+	julia->y_posi = 0;
+	julia->iter_zoom = 0;
 }
 
 void	ft_julia_init(t_fractal *julia)

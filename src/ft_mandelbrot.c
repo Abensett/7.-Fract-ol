@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:39:09 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/30 17:03:36 by abensett         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:23:41 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ft_mandelbrot_zoom_init(t_fractal *brot)
 	brot->y1 = -1.2;
 	brot->y2 = 1.2;
 	brot->imax = 10;
-	brot->iter_zoom = 0;
 	brot->color = 0xFFA07A;
+	brot->x_posi = 0;
+	brot->y_posi = 0;
+	brot->iter_zoom = 0;
 }
 
 void	ft_mandelbrot_init(t_fractal *brot)

@@ -6,13 +6,14 @@ SRC = 	ft_error_handlers.c \
 		ft_fractol_utils.c \
 		ft_mandelbrot.c \
 		ft_julia.c \
+		ft_burning_ship.c \
 
 OBJ= $(SRC:.c=.o)
 OBJ	:= $(addprefix obj/,${OBJ})
 
 CC = gcc
 
-FL_MLX	= -ldl -lmlx -Lmlx -lm -lXext -lX11 -Imlx mlx/libmlx.a
+FL_MLX	= -ldl -lmlx -Lmlx -lm -lXext -lX11 -Imlx mlx/libmlx.a -g
 CFLAGS = -g  -I includes
 ## -lmlx -lbass
 NAME = fractol
