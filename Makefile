@@ -7,6 +7,7 @@ SRC = 	ft_error_handlers.c \
 		ft_mandelbrot.c \
 		ft_julia.c \
 		ft_burning_ship.c \
+		ft_burning_bird.c \
 
 OBJ= $(SRC:.c=.o)
 OBJ	:= $(addprefix obj/,${OBJ})

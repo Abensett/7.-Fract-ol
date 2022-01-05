@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 14:01:28 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/30 16:49:06 by abensett         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:56:16 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ void	ft_handle_colors(t_data *data)
 {
 	static int	colors[20] = {0x800000, COOL_COLOR, COOL_COLOR2, 0xFFA07A,
 		0x40CE16, 0x1640CE, 0xCE1640, 0xFAB6A7, 0xA7FAB6, 0xB6A7FA,
-		0x3E060F, 0x0F3E06, 0x060F3E, 0xED7CFE, 0xFEED7C, 0x7CFEED};
+		0x3E060F, 0x0F3E06, 0x060F3E, 0xED7CFE, 0xFEED7C, 0x7CFEED,
+		0x370028, 0x0f056b, 0x2f1b0c, 0x2f1b0c};
 	static int	i = 0;
 
-	if (i < 20)
+	if (i < 19)
 			i++;
 	else
 			i = 0;

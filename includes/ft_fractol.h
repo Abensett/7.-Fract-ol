@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 14:03:40 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/31 12:46:50 by abensett         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:43:14 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,11 @@ void 	ft_julia_init(t_fractal *fractal);
 void 	ft_julia_draw(t_data *data);
 
 /*ft_burning_ship.c*/
-
 void	ft_burning_ship_zoom_init(t_fractal *brot);
 void	ft_burning_ship_init(t_fractal *brot);
 void	ft_burning_ship_draw(t_data *d);
+
+/*ft_burning_bird.c*/
+void	ft_burning_bird_zoom_init(t_fractal *brot);
+void	ft_burning_bird_init(t_fractal *brot);
+void	ft_burning_bird_draw(t_data *d);

@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 13:54:38 by abensett          #+#    #+#             */
-/*   Updated: 2021/12/31 15:31:07 by abensett         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:46:54 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 int	ft_draw(t_data *data)
 {
+	ft_mandelbrot_init(&data->f);
 	if (data->win_ptr == NULL)
 		return (1);
 	if (!ft_strncmp(data->fractal_name, "Mandelbrot", 10))
-	{
-		ft_mandelbrot_init(&data->f);
 		ft_mandelbrot_draw(data);
-	}
 	else if (!ft_strncmp(data->fractal_name, "Julia", 5))
 	{
 		ft_julia_init(&data->f);
@@ -47,6 +45,11 @@ int	ft_draw(t_data *data)
 	{
 		ft_burning_ship_init(&data->f);
 		ft_burning_ship_draw(data);
+	}
+	else if (!ft_strncmp(data->fractal_name, "BurningBird", 11))
+	{
+		ft_burning_bird_init(&data->f);
+		ft_burning_bird_draw(data);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
 		0, 0);
@@ -119,5 +122,7 @@ int	main(int ac, char **av)
 		ft_julia_zoom_init(&data.f);
 	else if (!ft_strncmp(data.fractal_name, "BurningShip", 11))
 		ft_burning_ship_zoom_init(&data.f);
+	else if (!ft_strncmp(data.fractal_name, "BurningBird", 11))
+		ft_burning_bird_zoom_init(&data.f);
 	ft_init_fractal(data);
 }

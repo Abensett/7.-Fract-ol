@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_burning_ship.c                                  :+:      :+:    :+:   */
+/*   ft_burning_bird.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:38:41 by abensett          #+#    #+#             */
-/*   Updated: 2022/01/05 17:41:19 by abensett         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:51:47 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fractol.h"
 
-void	ft_burning_ship_zoom_init(t_fractal *brot)
+void	ft_burning_bird_zoom_init(t_fractal *brot)
 {
 	brot->x1 = -2;
 	brot->x2 = 2;
@@ -25,7 +25,7 @@ void	ft_burning_ship_zoom_init(t_fractal *brot)
 	brot->iter_zoom = 0;
 }
 
-void	ft_burning_ship_init(t_fractal *brot)
+void	ft_burning_bird_init(t_fractal *brot)
 {
 	if (brot->iter_zoom == 0)
 	{
@@ -58,7 +58,7 @@ static	double	my_pow(double a)
 	return (a * a);
 }
 
-void	ft_burning_ship_draw(t_data *d)
+void	ft_burning_bird_draw(t_data *d)
 {
 	int		i;
 	double	tmp;
@@ -77,7 +77,7 @@ void	ft_burning_ship_draw(t_data *d)
 			{
 				tmp = d->f.z_r;
 				d->f.z_r = my_pow(d->f.z_r) - my_pow(d->f.z_i) + d->f.c_r;
-				d->f.z_i = 2 * my_abs(d->f.z_i * tmp) + d->f.c_i;
+				d->f.z_i = -2 * my_abs(d->f.z_i) * tmp + d->f.c_i;
 			}
 			if (i != d->f.imax)
 				my_mlx_pixel_put(&d->img, d->f. x, d->f.y, d->f.color * i);
