@@ -15,7 +15,7 @@ OBJ	:= $(addprefix obj/,${OBJ})
 CC = gcc
 
 FL_MLX	= -ldl -lmlx -Lmlx -lm -lXext -lX11 -Imlx mlx/libmlx.a -g
-CFLAGS = -g  -I includes
+CFLAGS = -Wall -Wextra -Werror -I includes
 ## -lmlx -lbass
 NAME = fractol
 
