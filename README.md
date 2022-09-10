@@ -7,5 +7,8 @@ Now that you took over your first graphical library: the miniLibX, it’s time f
 * Burning Ship
 * Burning Bird
 
+![Untitled](https://user-images.githubusercontent.com/85625233/189491952-e1b6108e-455c-4e86-ad20-3e67d729894c.png)
+![fractal2](https://user-images.githubusercontent.com/85625233/189491955-278c6131-8429-4c52-a937-cbd66cc55c6a.png)
+
 ***
 ## 42 Project 125/100
